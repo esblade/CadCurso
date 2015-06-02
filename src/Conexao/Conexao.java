@@ -13,7 +13,7 @@ public class Conexao {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/bancocad", "root", "");
-			//System.out.println("Conexão retornou sucesso ");
+			//System.out.println("Conexão retornou sucesso");
 		} catch (ClassNotFoundException e) {
 			System.out.println("Problemas para carregar a classe "+ e.getMessage());
 		} catch (SQLException e) {
