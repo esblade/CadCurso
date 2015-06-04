@@ -34,6 +34,31 @@ public class LoginDP {
 		return logado;
 	}
 	
+	public boolean cadastrar(Login l) {
+		PreparedStatement pstm;
+		boolean cadastrado = false;
+		try {
+			pstm = conn.getConect().prepareStatement(
+					"INSERT INTO tab_login(LOGIN, SENHA, EMAIL) VALUES (?, md5(?), ?)");
+			pstm.setString(1, l.getLogin());
+			pstm.setString(2, l.getSenha());
+			pstm.setString(3, l.getEmail());
+			boolean rs = pstm.execute();  
+	        if(rs != true){
+	        	System.out.println("Login criado com sucesso!");
+	        	cadastrado = true;
+	        }else{
+	        	System.out.println("Ocorreu um erro ao cadastrar!");
+	        	cadastrado = false;
+	        }
+			pstm.close();
+			conn.getConect().close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cadastrado;
+	}
+	
 	public boolean forget(Login l){
 		PreparedStatement pstm;
 		boolean existe = false;

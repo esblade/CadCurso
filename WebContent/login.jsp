@@ -24,11 +24,27 @@ if(session.getAttribute("loginUsuario") != null){
   </head>
   <%
   	try {
-  		String submit 	= request.getParameter("submit");
-  		String forget	= request.getParameter("submitForget");
-  		String newLogin = request.getParameter("submitNewLogin");
+  		String submit 	 = request.getParameter("submit");
+  		String forget	 = request.getParameter("submitForget");
+  		String newLogin  = request.getParameter("submitNewLogin");
+  		String cadastrar = request.getParameter("submitCadastrar");
 
-	  	if(submit != null){
+	  	
+  		if(cadastrar != null){
+			String email = request.getParameter("email");
+			String login = request.getParameter("login");
+			String senha = request.getParameter("senha");
+	
+			beanLogin.setEmail(email);
+			beanLogin.setLogin(login);
+			beanLogin.setSenha(senha);
+			
+			if( beanLoginDP.cadastrar(beanLogin) == true){
+				response.sendRedirect("index.jsp");
+			}else{
+				response.sendRedirect("login.jsp?cadInvalido");
+			}
+	  	}else if(submit != null){
 			String login = request.getParameter("login");
 			String senha = request.getParameter("senha");
 	
@@ -88,7 +104,18 @@ if(session.getAttribute("loginUsuario") != null){
         <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
         <label><a href="?forget" id="forget" class="text" tabindex="5">Esqueceu a senha?</a></label>
         <button class="btn btn-lg btn-success btn-block" type="submit" name="submit">Logar ªè</button>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Registrar ªè</button>
+        <a href="?cadastrar" id="cadastrar" name="cadastrar" class="btn btn-lg btn-primary btn-block">Registrar ªè</a>
+      </form>
+      <!-- Cadastrar -->
+      <form id="cadastrarDP" class="form-signin hidden" action="" method="POST">
+        <h3 class="form-signin-heading">Login</h3>
+        <label for="inputNome">Email</label>
+        <input type="text" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
+        <label for="inputNome">Nome</label>
+        <input type="text" id="login" name="login" class="form-control" placeholder="Login" required>
+        <label for="inputPassword">Senha</label>
+        <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
+        <button class="btn btn-lg btn-success btn-block" type="submit" name="submitCadastrar">Cadastrar ªè</button>
       </form>
       <!-- Recuperar Senha -->
       <form id="forgetDP" class="form-signin hidden" action="" method="POST">
@@ -132,10 +159,20 @@ if(session.getAttribute("loginUsuario") != null){
 	    return vars;
 	}
 	
-	var url   = window.location.href; 
+	var url   = window.location.href;
+	if(url.indexOf("?cadastrar") != -1){
+		$('#logar').addClass( "hidden" );
+		$('#cadastrarDP').removeClass( "hidden" );
+	}
 	if(url.indexOf("?invalido") != -1){
 		$('#alert').removeClass( "hidden" );
 		$('#alertResul').html( " Login invalido!" );
+	}
+	if(url.indexOf("?cadInvalido") != -1){
+		$('#logar').addClass( "hidden" );
+		$('#cadastrarDP').removeClass( "hidden" );
+		$('#alert').removeClass( "hidden" );
+		$('#alertResul').html( " Erro ao cadastrar!" );
 	}
 	if(url.indexOf("?forget") != -1){
 		$('#logar').addClass( "hidden" );
@@ -155,7 +192,6 @@ if(session.getAttribute("loginUsuario") != null){
 		$('#alert').removeClass( "hidden" );
 		$('#alertResul').html( " Senhas n„o correspondem ou ocorreu um erro!" );
 	}
-	
 	if(url.indexOf("?newLogin") != -1){
 		$('#logar').addClass( "hidden" );
 		$('#forgetDP').addClass( "hidden" );
