@@ -12,7 +12,7 @@
 <head>
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Cadastrar Cliente</title>
+<title>Cadastrar</title>
 </head>
 <body>
 	<%
@@ -30,7 +30,7 @@
 			n.getMessage();
 		}
 	%>
-	<h1>Cadastrar Cliente</h1>
+	<h1>Cadastrar</h1>
 	<form method="post" class="navbar-form navbar-left">
 		<div class="form-group">
 			<h3>Código:</h3>
