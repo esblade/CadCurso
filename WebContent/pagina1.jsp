@@ -38,7 +38,7 @@
 			<h3>Nome:</h3>
 			<input type="text" class="form-control" name="txtnome"><br>
 		</div>
-		<button type="submit" class="btn btn-default">Cadastrar Cliente</button><br><br><br>
+		
 	</form>
 </body>
 </html>
