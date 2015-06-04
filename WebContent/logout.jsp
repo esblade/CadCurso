@@ -10,6 +10,7 @@
 <% 
 session.invalidate();
 response.sendRedirect("login.jsp");
+log("Logout!");
 %>
 </body>
 </html>
