@@ -16,7 +16,7 @@
   </div>
   <div class="panel-body">
 	<div class="col-sm-12">
-		<form id="FormIDs" name="forms" method="POST" action="process.jsp" class="form-horizontal">
+		<form id="FormID" name="forms" method="POST" class="form-horizontal">
 			<div class="row">
 			  <!-- /.col-lg-6 -->
 			  <div class="col-sm-6">
@@ -151,6 +151,7 @@ function disabled() {
 function validaInfo() {
 	$("#divAlertID").addClass("hidden");
 	var vNome			= $('#nomeID').val();
+	var vCodTipo		= $('#codTipoID').val();
 	var vSubmit			= $('#submit').html();
 	var vOK				= true;
 	
@@ -169,6 +170,18 @@ function validaInfo() {
 		return false;
 	}else{
 		$('#divNomeID').removeClass('has-error');
+		$('#divAlertID').addClass('hidden');
+		$("#divHelpAlertID").html('');
+	}
+	
+	// Tipo
+	if (!vCodTipo) {
+		$('#divCodTipoID').addClass('has-error');
+		$('#divAlertID').removeClass('hidden');
+		$("#divHelpAlertID").html("<b>Tipo é obrigatório.</b>");
+		return false;
+	}else{
+		$('#divCodTipoID').removeClass('has-error');
 		$('#divAlertID').addClass('hidden');
 		$("#divHelpAlertID").html('');
 	}
