@@ -108,4 +108,23 @@ public class LoginDP {
 		}
 		return alterada;
 	}
+	
+	public int logado(Login l){
+		PreparedStatement pstm;
+		int codigo = 0;
+		try {
+			pstm = conn.getConect().prepareStatement(
+					"SELECT cod_login FROM tab_login WHERE login = (?)");
+			pstm.setString(1, l.getLogin());
+			ResultSet rs = pstm.executeQuery();  
+	        while(rs.next()){  
+	        	codigo = rs.getInt(1);
+	        } 
+			pstm.close();
+			conn.getConect().close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return codigo;
+	}
 }
