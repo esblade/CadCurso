@@ -32,16 +32,31 @@ int login_ = beanLoginDP.logado(beanLogin);
 	<script>
 	$(document).ready(function(){	
 		$("#idCliente").click( function() {
+			//# Desmarca os botoes de navegacao
+			$("li").each(function () {
+		        $(this).removeClass( "active" );
+		    });
 			$('#idPage1').addClass( "active" );
-			$('#home').removeClass( "active" );
 	        $('#jumbotron').addClass( "hidden" );
 	        $('#conteudo').load( "cliente.jsp" );
 		});
 		$("#idSolicitanteCad").click( function() {
-			$('#idPageS1').addClass( "active" );
-			$('#home').removeClass( "active" );
+			//# Desmarca os botoes de navegacao
+			$("li").each(function () {
+		        $(this).removeClass( "active" );
+		    });
+			$('#idPage2').addClass( "active" );
 	        $('#jumbotron').addClass( "hidden" );
 	        $('#conteudo').load( "solicitanteCad.jsp" );
+		});
+		$("#idSolicitanteLis").click( function() {
+			//# Desmarca os botoes de navegacao
+			$("li").each(function () {
+		        $(this).removeClass( "active" );
+		    });
+			$('#idPage2').addClass( "active" );
+	        $('#jumbotron').addClass( "hidden" );
+	        $('#conteudo').load( "solicitanteLis.jsp" );
 		});
 	
 		var url   = window.location.hash; 
@@ -65,9 +80,9 @@ int login_ = beanLoginDP.logado(beanLogin);
             <li id="idPage2">
 		      <a href="" data-toggle="dropdown" aria-expanded="false">Solicitante <span class="caret"></span></a>
 		      <ul class="dropdown-menu" role="menu">
-		        <li id="idPageS1"><a href="#" id="idSolicitanteCad">Cadastrar</a></li>
-		        <li id="idPageS2"><a href="#">Listar</a></li>
-		        <li id="idPageS3"><a href="#">Pesquisar</a></li>
+		        <li><a href="#" id="idSolicitanteCad">Cadastrar</a></li>
+		        <li><a href="#" id="idSolicitanteLis">Listar</a></li>
+		        <li><a href="#">Pesquisar</a></li>
 		      </ul>
 		    </li>
             <li id="idPage3"><a href="#" id="idCurso">Services</a></li>

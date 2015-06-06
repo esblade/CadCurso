@@ -1,12 +1,9 @@
 <%@page import="ConexaoAtributos.SolicitanteTipo"%>
-<%@page import="ConexaoAtributos.Solicitante"%>
 <%@page import="java.util.List"%>
-<%@page import="org.apache.tomcat.util.codec.binary.Base64"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<jsp:useBean id="beanSolicitante" class="ConexaoAtributos.Solicitante" scope="page"></jsp:useBean>
 <jsp:useBean id="beanSolicitanteDP" class="ConexaoBO.SolicitanteDP" scope="page"></jsp:useBean>
-    
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
@@ -87,6 +84,7 @@
 </div>
 <script type="text/javascript" charset="%CHARSET%">
 $('#codTipoID').css('width','100%').select2({allowClear:true});
+$('#cidadeResidencia').css('width','100%').select2({allowClear:true});
 
 var acao = "";
 var msg = "cadastrado";
@@ -107,12 +105,17 @@ $('#FormID').submit(function(e) {
 
 	$.ajax({
 		type:	"POST", 
-		url:	"",
+		url:	"solicitanteCadDP.jsp",
 		data:	$('#FormID').serialize(),
-		success: function(html) {
-			disabled();
-			$("#divAlertID").removeClass("hidden");
-			$("#divHelpAlertID").html("<b>Informações salvas com sucesso.</b>");
+		success: function(resultado) {
+			if(resultado.match(/true/)){
+				disabled();
+				$("#divAlertID").removeClass("hidden");
+				$("#divHelpAlertID").html("<b>Informações salvas com sucesso.</b>");
+			}else if(resultado.match(/false/)){
+				$("#divAlertID").removeClass("hidden");
+				$("#divHelpAlertID").html("<b>Ocorreu um erro ao ser cadastrado.</b>");
+			}
 		},
 		error:function (){
 			$("#divAlertID").removeClass("hidden");
@@ -144,22 +147,47 @@ function _GET(name)
 }
 
 function disabled() {
-	$('#nomeID').attr('disabled', 'disabled');
+	//# Dabilita todos os campos do tipo input
+	$("input").each(function () {
+        $(this).attr('disabled',true);
+    });
+	//# Dabilita todos os campos do tipo select
+	$("select").each(function () {
+        $(this).attr('disabled',true);
+    });
 	$("#submit").html("Novo");
+}
+
+function restart(){
+	//# Limpa todos os campos menos o select
+	jQuery.fn.reset = function () {
+	  $(this).each (function() { this.reset(); });
+	}
+	//# Limpa e habilita todos os campos do tipo select
+	$("select").each(function () {
+        $(this).select2('val',''); 
+        $(this).removeAttr('disabled');
+    });
+	//# Habilita todos os campos do tipo input
+	$("input").each(function () {
+        $(this).removeAttr('disabled');
+    });
+	
+	$('#FormID').reset();
 }
 
 function validaInfo() {
 	$("#divAlertID").addClass("hidden");
 	var vNome			= $('#nomeID').val();
 	var vCodTipo		= $('#codTipoID').val();
+	var vCodTipoSelect	= $('#codTipoID option:selected').val();
 	var vSubmit			= $('#submit').html();
 	var vOK				= true;
-	
+
 	if(vSubmit == "Novo"){
-		$('#nomeID').removeAttr('disabled');
-		$('#nomeID').val('');
-		$("#submit").html(" Salvar");
-		return false;
+		restart();
+		$("#submit").html("Salvar");
+		vOK = false;
 	}
 	
 	// Nome
@@ -167,7 +195,7 @@ function validaInfo() {
 		$('#divNomeID').addClass('has-error');
 		$('#divAlertID').removeClass('hidden');
 		$("#divHelpAlertID").html("<b>Nome é obrigatório.</b>");
-		return false;
+		vOK = false;
 	}else{
 		$('#divNomeID').removeClass('has-error');
 		$('#divAlertID').addClass('hidden');
@@ -179,13 +207,14 @@ function validaInfo() {
 		$('#divCodTipoID').addClass('has-error');
 		$('#divAlertID').removeClass('hidden');
 		$("#divHelpAlertID").html("<b>Tipo é obrigatório.</b>");
-		return false;
+		vOK = false;
 	}else{
 		$('#divCodTipoID').removeClass('has-error');
 		$('#divAlertID').addClass('hidden');
 		$("#divHelpAlertID").html('');
 	}
 	
+	//vOK = false;
 	if (vOK == true) {
 		return true;
 	}else{

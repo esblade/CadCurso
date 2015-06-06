@@ -7,8 +7,15 @@ public class Solicitante {
 	String nom_solicitante;
 	String num_tel_solicitante;
 	String email_solicitante;
-	int tipo_solicitante;
+	int cod_tipo;
+	String dsc_tipo_fk;
 	
+	public String getDsc_tipo_fk() {
+		return dsc_tipo_fk;
+	}
+	public void setDsc_tipo_fk(String dsc_tipo_fk) {
+		this.dsc_tipo_fk = dsc_tipo_fk;
+	}
 	public int getCod_solicitante() {
 		return cod_solicitante;
 	}
@@ -39,11 +46,11 @@ public class Solicitante {
 	public void setEmail_solicitante(String email_solicitante) {
 		this.email_solicitante = email_solicitante;
 	}
-	public int getTipo_solicitante() {
-		return tipo_solicitante;
+	public int getCod_tipo() {
+		return cod_tipo;
 	}
-	public void setTipo_solicitante(int tipo_solicitante) {
-		this.tipo_solicitante = tipo_solicitante;
+	public void setCod_tipo(int cod_tipo) {
+		this.cod_tipo = cod_tipo;
 	}
 	
 }
