@@ -21,7 +21,7 @@ int login_ = beanLoginDP.logado(beanLogin);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Justified Nav Template for Bootstrap</title>
+    <title>Projeto Desenvolvimento Web</title>
 
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap/css/justified-nav.css" rel="stylesheet">
@@ -59,11 +59,15 @@ int login_ = beanLoginDP.logado(beanLogin);
 	        $('#conteudo').load( "solicitanteLis.jsp" );
 		});
 	
-		var url   = window.location.hash; 
-		if(url.indexOf("alterar")!=-1){
+		var url   = window.location.href; 
+		if(url.indexOf("id")!=-1){
 			$('#jumbotron').addClass( "hidden" );
 			$('#GCliID').addClass( "hidden" );
-			$('#conteudo').load( "addInfo.html" );
+			$('#conteudo').load( "solicitanteCad.jsp" );
+		}else if(url.indexOf("busca")!=-1){
+			$('#jumbotron').addClass( "hidden" );
+			$('#GCliID').addClass( "hidden" );
+			$('#conteudo').load( "solicitanteLis.jsp" );
 		}
 	});
 	</script>
@@ -102,7 +106,7 @@ int login_ = beanLoginDP.logado(beanLogin);
       </div>
       
       <footer class="footer">
-        <p>&copy; Developed by Jalon - Rafael - Romy | 2015</p>
+        <p>&copy; Developed by Jalon - Rafael - Romy | 2015 | Work order</p>
       </footer>
 
     </div>

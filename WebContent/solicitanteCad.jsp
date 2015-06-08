@@ -1,3 +1,4 @@
+<%@page import="org.apache.tomcat.util.codec.binary.Base64"%>
 <%@page import="ConexaoAtributos.SolicitanteTipo"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -14,6 +15,7 @@
   <div class="panel-body">
 	<div class="col-sm-12">
 		<form id="FormID" name="forms" method="POST" class="form-horizontal">
+		<input type="hidden" id="codSolicitanteID" name="codSolicitante" value="MA==">
 			<div class="row">
 			  <!-- /.col-lg-6 -->
 			  <div class="col-sm-6">
@@ -65,7 +67,7 @@
 			<br />
 			<div class="clearfix form-actions">
 				<label class="col-sm-5 control-label"> </label>
-				<button type="submit" class="btn btn-primary" id="submit" name="submit">
+				<button type="submit" class="btn btn-primary" id="submit" name="submit" value="1">
 					Salvar
 				</button>
 				<button type="button" class="btn btn-warning" id="cancel"
@@ -86,35 +88,60 @@
 $('#codTipoID').css('width','100%').select2({allowClear:true});
 $('#cidadeResidencia').css('width','100%').select2({allowClear:true});
 
-var acao = "";
-var msg = "cadastrado";
-if(_GET("acao") == "alterar"){
-	conferiInfo();
+var url   = window.location.href; 
+if(url.indexOf("id")!=-1){
+	$.ajax({
+		type:	"GET", 
+		url:	"solicitanteDP.jsp?id=" + _GET("id"),
+		success: function(resultado) {
+			if(resultado != ""){
+				var regex = new RegExp("<Cod#(.*?)#>", "g");
+				var match = regex.exec(resultado);
+				$('#codSolicitanteID').val(btoa(match[1]));
+				
+				var regex = new RegExp("<Nome#(.*?)#>", "g");
+				var match = regex.exec(resultado);
+				$('#nomeID').val(match[1]);
+				
+				var regex = new RegExp("<Telefone#(.*?)#>", "g");
+				var match = regex.exec(resultado);
+				$('#telefoneID').val(match[1]); 
+				
+				var regex = new RegExp("<Email#(.*?)#>", "g");
+				var match = regex.exec(resultado);
+				$('#emailID').val(match[1]); 
+				
+				var regex = new RegExp("<Tipo#(.*?)#>", "g");
+				var match = regex.exec(resultado);
+				$('#codTipoID').select2('val',match[1]); 
+			}
+		}
+	});
 }
+
 $('#FormID').submit(function(e) {
-	/*if($("#submit").html() == "Alterar"){
-		acao = "?acao=alterar";
-		msg = "alterado";
+	var url   = window.location.href; 
+	if(url.indexOf("id")!=-1){
+		msg = "alterada";
 	} else {
-		acao = "";
-		msg = "cadastrado";
-	}*/
+		msg = "cadastrada";
+	}
 	
 	var vOk  = validaInfo();
 	if(!vOk) return false;
-
+	
 	$.ajax({
 		type:	"POST", 
-		url:	"solicitanteCadDP.jsp",
+		url:	"solicitanteDP.jsp",
 		data:	$('#FormID').serialize(),
 		success: function(resultado) {
 			if(resultado.match(/true/)){
 				disabled();
 				$("#divAlertID").removeClass("hidden");
-				$("#divHelpAlertID").html("<b>Informações salvas com sucesso.</b>");
+				$("#divHelpAlertID").html("<b>Informações "+msg+" com sucesso.</b>");
 			}else if(resultado.match(/false/)){
 				$("#divAlertID").removeClass("hidden");
-				$("#divHelpAlertID").html("<b>Ocorreu um erro ao ser cadastrado.</b>");
+				$("#divHelpAlertID").html("<b>Ocorreu um erro ao ser "+msg+".</b>");
 			}
 		},
 		error:function (){
@@ -125,11 +152,6 @@ $('#FormID').submit(function(e) {
 	
 	return false; 
 });
-
-function conferiInfo() {
-	$('#nomeID').val(_GET("nome"));
-	$("#submit").html("Alterar");
-}
 
 function _GET(name)
 {
