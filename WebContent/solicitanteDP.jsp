@@ -56,6 +56,20 @@ try {
 		}else{
 			out.print(false);
 		}
+	}else if(action.contains("alterar")){
+		String cod_solicitante = action.substring(action.indexOf("&codigo=")+8);
+		beanSolicitante.setCod_solicitante(Integer.parseInt(cod_solicitante));
+		beanSolicitante.setCod_login(login_);
+		
+		List<Solicitante> lista = beanSolicitanteDP.listar(beanSolicitante, true);
+	 	for(int i = 0; i < lista.size(); i++) {  
+ 		Solicitante linhaLocal = (Solicitante) lista.get(i); 
+ 			out.print("<Cod#" + linhaLocal.getCod_solicitante() + "#>");
+			out.print("<Nome#" + linhaLocal.getNom_solicitante() + "#>");
+			out.print("<Telefone#" + linhaLocal.getNum_tel_solicitante() + "#>");
+			out.print("<Email#" + linhaLocal.getEmail_solicitante() + "#>");
+			out.print("<Tipo#" + linhaLocal.getCod_tipo() + "#>");
+	 	} 
 	}
 } catch (NumberFormatException n) {
 	n.getMessage();

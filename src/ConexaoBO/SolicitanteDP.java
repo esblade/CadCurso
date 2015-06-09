@@ -63,11 +63,10 @@ public class SolicitanteDP {
 		List<Solicitante> linhas = new ArrayList<Solicitante>(); 
 		PreparedStatement pstm;
 		String querySQL = null;
-		
 		try {
-			if(busca == true){
+			if(cod_s.getCod_solicitante() == 0 && busca == true){
 				querySQL= "SELECT s.*, t.DSC_TIPO FROM tab_solicitante AS s INNER JOIN tab_solicitante_tipo AS t ON s.cod_tipo = t.cod_tipo WHERE COD_LOGIN = ? AND UPPER(NOM_SOLICITANTE) LIKE ?";
-			}else if(cod_s.getCod_solicitante() != 0 && busca == false){
+			}else if(cod_s.getCod_solicitante() != 0 && busca == true){
 				querySQL= "SELECT s.*, t.DSC_TIPO FROM tab_solicitante AS s INNER JOIN tab_solicitante_tipo AS t ON s.cod_tipo = t.cod_tipo WHERE COD_LOGIN = ? AND COD_SOLICITANTE = ?";
 			}else{
 				querySQL= "SELECT s.*, t.DSC_TIPO FROM tab_solicitante AS s INNER JOIN tab_solicitante_tipo AS t ON s.cod_tipo = t.cod_tipo WHERE COD_LOGIN = ?";
@@ -75,9 +74,9 @@ public class SolicitanteDP {
 			
 			pstm = conn.getConect().prepareStatement(querySQL);
 			pstm.setInt(1, cod_s.getCod_login());
-			if(busca == true){
+			if(cod_s.getCod_solicitante() == 0 && busca == true){
 				pstm.setString(2, "%" + cod_s.getNom_solicitante() + "%");
-			}else if(cod_s.getCod_solicitante() != 0 && busca == false){
+			}else if(cod_s.getCod_solicitante() != 0 && busca == true){
 				pstm.setInt(2, cod_s.getCod_solicitante());
 			}
 			ResultSet rs = pstm.executeQuery();  

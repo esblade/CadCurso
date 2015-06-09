@@ -77,7 +77,7 @@
 			s.setNom_solicitante(nome);
 			buscar = true;
 		}
-
+		
 		List<Solicitante> lista = d.listar(s, buscar);
 	 	for(int i = 0; i < lista.size(); i++) {  
 	 		Solicitante linhaLocal = (Solicitante) lista.get(i); 

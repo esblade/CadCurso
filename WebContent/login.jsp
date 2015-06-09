@@ -56,7 +56,7 @@ if(session.getAttribute("loginUsuario") != null){
 				session = request.getSession(true); 
 				session.setMaxInactiveInterval(60*60*2);  
 				session.setAttribute("loginUsuario",new String( encoded )); 
-				response.sendRedirect("index.jsp");
+				response.sendRedirect("./");
 			}else{
 				response.sendRedirect("login.jsp?invalido");
 			}
