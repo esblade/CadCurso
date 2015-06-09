@@ -5,7 +5,6 @@ import java.util.List;
 import ConexaoAtributos.Login;
 import ConexaoAtributos.Solicitante;
 import ConexaoAtributos.SolicitanteTipo;
-import ConexaoBO.ClienteDP;
 import ConexaoBO.LoginDP;
 import ConexaoBO.SolicitanteDP;
 

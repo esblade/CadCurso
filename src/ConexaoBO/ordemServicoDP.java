@@ -2,13 +2,13 @@ package ConexaoBO;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 import Conexao.Conexao;
 import ConexaoAtributos.OrdemServico;
-import ConexaoAtributos.Solicitante;
+import ConexaoAtributos.Login;
 
 public class ordemServicoDP {
 	Conexao conn = new Conexao();
+	Login l;
 
 	public boolean cadastrar(OrdemServico os) {
 		PreparedStatement pstm;
@@ -40,7 +40,7 @@ public class ordemServicoDP {
 					cadastrado = false;
 				}
 			} else {
-				//pstm.setInt(6, s.getCod_login());
+				pstm.setInt(6, l.getCod_login());
 				boolean rs = pstm.execute();
 				if (rs != true) {
 					System.out.println("Solicitante cadastrado com sucesso!");
@@ -57,5 +57,4 @@ public class ordemServicoDP {
 		}
 		return cadastrado;
 	}
-
 }

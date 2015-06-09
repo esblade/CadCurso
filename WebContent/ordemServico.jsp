@@ -2,7 +2,12 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
+	<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/css/justified-nav.css" rel="stylesheet">
+    <script src="bootstrap/js/ie-emulation-modes-warning.js"></script>
+    <script type='text/javascript' src='jquery/jquery-2.1.3.min.js'></script>
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 
 <div class="panel panel-info">
   <div class="panel-heading">
@@ -15,45 +20,53 @@
 			<div class="row">
 			  <!-- /.col-lg-6 -->
 			  <div class="col-sm-6">
-			    <div class="form-group col-sm-12" id="divNomeID">
-			      <label for="nomeID" class="col-sm-3 control-label">Nome</label>
+			    <div class="form-group col-sm-12" id="divCodID">
+			      <label for="nomeID" class="col-sm-3 control-label">Código OS</label>
 			      <div class="input-group col-sm-8 pull-left">
 			      	 <span class="input-group-addon"><i class="glyphicon glyphicon-comment"></i></span>
-				 	 <input type="text" class="form-control" id="nomeID" name="nome" placeholder="Nome">
+				 	 <input type="text" class="form-control" id="codID" name="codigo" placeholder="CodOs">
 			      </div>
 				</div>
-				<div class="form-group col-sm-12" id="divEmailID">
-			      <label for="nomeID" class="col-sm-3 control-label">Email</label>
+				<div class="form-group col-sm-12" id="divTituloID">
+			      <label for="nomeID" class="col-sm-3 control-label">Título OS</label>
 			      <div class="input-group col-sm-8 pull-left">
 			      	 <span class="input-group-addon"><i class="glyphicon glyphicon-comment"></i></span>
-				 	 <input type="text" class="form-control" id="emailID" name="email" placeholder="Email">
+				 	 <input type="text" class="form-control" id="tituloID" name="titulo" placeholder="Titulo">
 			      </div>
 				</div>
 			  </div>
 			  <!-- /.col-lg-6 -->
 			  <div class="col-sm-6">
-			    <div class="form-group col-sm-12" id="divTelefoneID">
-			      <label for="nomeID" class="col-sm-3 control-label">Telefone</label>
+			    <div class="form-group col-sm-12" id="divDescricaoID">
+			      <label for="nomeID" class="col-sm-3 control-label">Descrição</label>
 			      <div class="input-group col-sm-8 pull-left">
 			      	 <span class="input-group-addon"><i class="glyphicon glyphicon-comment"></i></span>
-				 	 <input type="text" class="form-control" id="telefoneID" name="telefone" placeholder="Telefone">
+				 	 <input type="text" class="form-control" id="descrcaoID" name="descricao" placeholder="Descricao">
 			      </div>
 				</div>
-				<div class="form-group col-sm-12" id="divCodTipoID">
-					<label for="codTipoID" class="col-xs-12 col-sm-3 control-label">Tipo</label>
-					<div class="input-group col-sm-8 pull-left">
-			      	 	<span class="input-group-addon"><i class="glyphicon glyphicon-comment"></i></span>
-						<select id="codTipoID" name="codTipo" class="select2" data-placeholder="Selecione o tipo solicitante">
-							<option></option> 
-							<%  
-							 /*List<SolicitanteTipo> tipos = beanSolicitanteDP.Tipo();
-						 	 for(int i = 0; i < tipos.size(); i++) {  
-						 		SolicitanteTipo linhaLocal = tipos.get(i); */ 
-							%> 
-							<option value=<%=/*linhaLocal.getCod_tipo()*/%>> <%=/*linhaLocal.getDsc_tipo()*/%></option> 
-							<% //} %>
-						</select>
-					</div>
+				<div class="col-sm-6">
+			    <div class="form-group col-sm-12" id="divDataPrazoID">
+			      <label for="nomeID" class="col-sm-3 control-label">Prazo</label>
+			      <div class="input-group col-sm-8 pull-left">
+			      	 <span class="input-group-addon"><i class="glyphicon glyphicon-comment"></i></span>
+				 	 <input type="text" class="form-control" id="prazoID" name="prazo" placeholder="Prazo">
+			      </div>
+				</div>
+				<div class="col-sm-6">
+			    <div class="form-group col-sm-12" id="divDataOSID">
+			      <label for="nomeID" class="col-sm-3 control-label">Data OS</label>
+			      <div class="input-group col-sm-8 pull-left">
+			      	 <span class="input-group-addon"><i class="glyphicon glyphicon-comment"></i></span>
+				 	 <input type="text" class="form-control" id="dataosID" name="dataos" placeholder="DataOS">
+			      </div>
+				</div>
+				<div class="col-sm-6">
+			    <div class="form-group col-sm-12" id="divStatusID">
+			      <label for="nomeID" class="col-sm-3 control-label">Status da OS</label>
+			      <div class="input-group col-sm-8 pull-left">
+			      	 <span class="input-group-addon"><i class="glyphicon glyphicon-comment"></i></span>
+				 	 <input type="text" class="form-control" id="statusID" name="status" placeholder="status">
+			      </div>
 				</div>
 			  </div>
 			  <!-- /.col-lg-6 -->
@@ -64,7 +77,7 @@
 			<div class="clearfix form-actions">
 				<label class="col-sm-5 control-label"> </label>
 				<button type="submit" class="btn btn-primary" id="submit" name="submit" value="1">
-					Salvar
+					Emitir OS
 				</button>
 				<button type="button" class="btn btn-warning" id="cancel"
 					onclick="javascript:window.location='./';">
