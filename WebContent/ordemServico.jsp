@@ -1,16 +1,12 @@
-<%@page import="org.apache.tomcat.util.codec.binary.Base64"%>
-<%@page import="ConexaoAtributos.SolicitanteTipo"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<jsp:useBean id="beanSolicitanteDP" class="ConexaoBO.SolicitanteDP" scope="page"></jsp:useBean>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
+
 <div class="panel panel-info">
   <div class="panel-heading">
-	<h2>Adicionar Solicitante</h2>
+	<h2>Adicionar Ordem de Serviço</h2>
   </div>
   <div class="panel-body">
 	<div class="col-sm-12">
@@ -50,12 +46,12 @@
 						<select id="codTipoID" name="codTipo" class="select2" data-placeholder="Selecione o tipo solicitante">
 							<option></option> 
 							<%  
-							 List<SolicitanteTipo> tipos = beanSolicitanteDP.Tipo();
+							 /*List<SolicitanteTipo> tipos = beanSolicitanteDP.Tipo();
 						 	 for(int i = 0; i < tipos.size(); i++) {  
-						 		SolicitanteTipo linhaLocal = tipos.get(i);  
+						 		SolicitanteTipo linhaLocal = tipos.get(i); */ 
 							%> 
-							<option value=<%=linhaLocal.getCod_tipo()%>> <%=linhaLocal.getDsc_tipo()%></option> 
-							<% } %>
+							<option value=<%=/*linhaLocal.getCod_tipo()*/%>> <%=/*linhaLocal.getDsc_tipo()*/%></option> 
+							<% //} %>
 						</select>
 					</div>
 				</div>
