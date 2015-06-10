@@ -5,7 +5,7 @@
 	<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap/css/justified-nav.css" rel="stylesheet">
     <script src="bootstrap/js/ie-emulation-modes-warning.js"></script>
-    <script type='text/javascript' src='jquery/jquery-2.1.3.min.js'></script>
+    <script type='text/javascript' src="jquery/jquery-2.1.3.min.js"></script>
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 
@@ -57,7 +57,7 @@
 			      <label for="nomeID" class="col-sm-3 control-label">Data OS</label>
 			      <div class="input-group col-sm-8 pull-left">
 			      	 <span class="input-group-addon"><i class="glyphicon glyphicon-comment"></i></span>
-				 	 <input type="text" class="form-control" id="dataosID" name="dataos" placeholder="DataOS">
+				 	 <input type="text" class="form-control" id="dataosID" name="dataOS" placeholder="DataOS">
 			      </div>
 				</div>
 				<div class="col-sm-6">
@@ -101,28 +101,32 @@ var url   = window.location.href;
 if(url.indexOf("id")!=-1){
 	$.ajax({
 		type:	"GET", 
-		url:	"solicitanteDP.jsp?id=" + _GET("id"),
+		url:	"ordemServicoDP.jsp?id=" + _GET("id"),
 		success: function(resultado) {
 			if(resultado != ""){
 				var regex = new RegExp("<Cod#(.*?)#>", "g");
 				var match = regex.exec(resultado);
-				$('#codSolicitanteID').val(btoa(match[1]));
+				$('#codOSID').val(btoa(match[1]));
 				
-				var regex = new RegExp("<Nome#(.*?)#>", "g");
+				var regex = new RegExp("<Titulo#(.*?)#>", "g");
 				var match = regex.exec(resultado);
-				$('#nomeID').val(match[1]);
+				$('#tituloordemID').val(match[1]);
 				
-				var regex = new RegExp("<Telefone#(.*?)#>", "g");
+				var regex = new RegExp("<Descricao OS#(.*?)#>", "g");
 				var match = regex.exec(resultado);
-				$('#telefoneID').val(match[1]); 
+				$('#descricaoOSID').val(match[1]); 
 				
-				var regex = new RegExp("<Email#(.*?)#>", "g");
+				var regex = new RegExp("<Data Prazo#(.*?)#>", "g");
 				var match = regex.exec(resultado);
-				$('#emailID').val(match[1]); 
+				$('#dataPrazoID').val(match[1]); 
 				
-				var regex = new RegExp("<Tipo#(.*?)#>", "g");
+				var regex = new RegExp("<Data OS#(.*?)#>", "g");
 				var match = regex.exec(resultado);
-				$('#codTipoID').select2('val',match[1]); 
+				$('#dataOSID').select2('val',match[1]); 
+				
+				var regex = new RegExp("<Status OS#(.*?)#>", "g");
+				var match = regex.exec(resultado);
+				$('#statusOSID').select2('val',match[1]); 
 			}
 		}
 	});

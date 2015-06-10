@@ -26,7 +26,7 @@ int login_ = beanLoginDP.logado(beanLogin);
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap/css/justified-nav.css" rel="stylesheet">
     <script src="bootstrap/js/ie-emulation-modes-warning.js"></script>
-    <script type='text/javascript' src='jquery/jquery-2.1.3.min.js'></script>
+    <script type='text/javascript' src="jquery/jquery-2.1.3.min.js"></script>
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 	<script>
@@ -89,7 +89,7 @@ int login_ = beanLoginDP.logado(beanLogin);
 		        <li><a href="#">Pesquisar</a></li>
 		      </ul>
 		    </li>
-            <li id="idPage3"><a href="#" id="idCurso">Services</a></li>
+            <li id="idPage3"><a href="ordemServico.jsp" id="idCurso">Services</a></li>
             <li><a href="#">Downloads</a></li>
             <li><a href="#">About</a></li>
             <li><a href="logout.jsp">Logout</a></li>
