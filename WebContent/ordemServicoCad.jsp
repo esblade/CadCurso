@@ -34,9 +34,6 @@
 				 	 <input type="text" class="form-control" id="tituloID" name="titulo" placeholder="Titulo">
 			      </div>
 				</div>
-			  </div>
-			  <!-- /.col-lg-6 -->
-			  <div class="col-sm-6">
 			    <div class="form-group col-sm-12" id="divDescricaoID">
 			      <label for="nomeID" class="col-sm-3 control-label">Descrição</label>
 			      <div class="input-group col-sm-8 pull-left">
@@ -44,7 +41,8 @@
 				 	 <input type="text" class="form-control" id="descrcaoID" name="descricao" placeholder="Descricao">
 			      </div>
 				</div>
-				<div class="col-sm-6">
+			   </div>
+			   <div class="col-sm-6">
 			    <div class="form-group col-sm-12" id="divDataPrazoID">
 			      <label for="nomeID" class="col-sm-3 control-label">Prazo</label>
 			      <div class="input-group col-sm-8 pull-left">
@@ -52,7 +50,6 @@
 				 	 <input type="text" class="form-control" id="prazoID" name="prazo" placeholder="Prazo">
 			      </div>
 				</div>
-				<div class="col-sm-6">
 			    <div class="form-group col-sm-12" id="divDataOSID">
 			      <label for="nomeID" class="col-sm-3 control-label">Data OS</label>
 			      <div class="input-group col-sm-8 pull-left">
@@ -60,7 +57,6 @@
 				 	 <input type="text" class="form-control" id="dataosID" name="dataOS" placeholder="DataOS">
 			      </div>
 				</div>
-				<div class="col-sm-6">
 			    <div class="form-group col-sm-12" id="divStatusID">
 			      <label for="nomeID" class="col-sm-3 control-label">Status da OS</label>
 			      <div class="input-group col-sm-8 pull-left">
@@ -68,7 +64,7 @@
 				 	 <input type="text" class="form-control" id="statusID" name="status" placeholder="status">
 			      </div>
 				</div>
-			  </div>
+			</div>
 			  <!-- /.col-lg-6 -->
 			</div>
 			<!-- /.row -->
