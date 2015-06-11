@@ -31,14 +31,14 @@ int login_ = beanLoginDP.logado(beanLogin);
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 	<script>
 	$(document).ready(function(){	
-		$("#idCliente").click( function() {
+		$("#idOrdemServicoCad").click( function() {
 			//# Desmarca os botoes de navegacao
 			$("li").each(function () {
 		        $(this).removeClass( "active" );
 		    });
 			$('#idPage1').addClass( "active" );
 	        $('#jumbotron').addClass( "hidden" );
-	        $('#conteudo').load( "cliente.jsp" );
+	        $('#conteudo').load( "ordemServicoCad.jsp" );
 		});
 		$("#idSolicitanteCad").click( function() {
 			//# Desmarca os botoes de navegacao
@@ -80,13 +80,18 @@ int login_ = beanLoginDP.logado(beanLogin);
         <nav>
           <ul class="nav nav-justified">
             <li class="active" id="home"><a href="./">Home</a></li>
-            <li id="idPage1"><a href="#" id="idCliente">Cliente</a></li>
+            <li id="idPage1">
+		      <a href="" data-toggle="dropdown" aria-expanded="false">Serviço <span class="caret"></span></a>
+		      <ul class="dropdown-menu" role="menu">
+		        <li><a href="#" id="idOrdemServicoCad">Cadastrar</a></li>
+		        <li><a href="#" id="idOrdemServicoLis">Listar</a></li>
+		      </ul>
+		    </li>
             <li id="idPage2">
 		      <a href="" data-toggle="dropdown" aria-expanded="false">Solicitante <span class="caret"></span></a>
 		      <ul class="dropdown-menu" role="menu">
 		        <li><a href="#" id="idSolicitanteCad">Cadastrar</a></li>
 		        <li><a href="#" id="idSolicitanteLis">Listar</a></li>
-		        <li><a href="#">Pesquisar</a></li>
 		      </ul>
 		    </li>
             <li id="idPage3"><a href="ordemServico.jsp" id="idCurso">Services</a></li>
@@ -106,7 +111,7 @@ int login_ = beanLoginDP.logado(beanLogin);
       </div>
       
       <footer class="footer">
-        <p>&copy; Developed by Jalon - Rafael - Romy | 2015 | Work order</p>
+        <p>&copy; Developed by Jalon - Rafael - Romy | 2015</p>
       </footer>
 
     </div>
