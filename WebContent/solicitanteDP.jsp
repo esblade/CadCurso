@@ -74,5 +74,4 @@ try {
 } catch (NumberFormatException n) {
 	n.getMessage();
 }
-
 %>

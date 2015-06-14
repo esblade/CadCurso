@@ -94,7 +94,7 @@ int login_ = beanLoginDP.logado(beanLogin);
 		        <li><a href="#" id="idSolicitanteLis">Listar</a></li>
 		      </ul>
 		    </li>
-            <li id="idPage3"><a href="ordemServico.jsp" id="idCurso">Services</a></li>
+            <li id="idPage3"><a href="ordemServicoCad.jsp" id="idCurso">Services</a></li>
             <li><a href="#">Downloads</a></li>
             <li><a href="#">About</a></li>
             <li><a href="logout.jsp">Logout</a></li>

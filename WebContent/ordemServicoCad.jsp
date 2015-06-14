@@ -9,6 +9,8 @@
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
 
+
+
 <div class="panel panel-info">
   <div class="panel-heading">
 	<h2>Adicionar Ordem de Serviço</h2>
@@ -64,6 +66,13 @@
 				 	 <input type="text" class="form-control" id="statusID" name="status" placeholder="status">
 			      </div>
 				</div>
+				 <div class="form-group col-sm-12" id="divEmitenteID">
+			      <label for="nomeID" class="col-sm-3 control-label">Emissor da OS</label>
+			      <div class="input-group col-sm-8 pull-left">
+			      	 <span class="input-group-addon"><i class="glyphicon glyphicon-comment"></i></span>
+				 	 <input type="text" class="form-control" id="emitenteID" name="emitente" placeholder="emitente">
+			      </div>
+				</div>
 			</div>
 			  <!-- /.col-lg-6 -->
 			</div>
@@ -89,6 +98,8 @@
 	  </div>
   </div>
 </div>
+
+<!-- 
 <script type="text/javascript" charset="%CHARSET%">
 $('#codTipoID').css('width','100%').select2({allowClear:true});
 $('#cidadeResidencia').css('width','100%').select2({allowClear:true});
@@ -253,3 +264,4 @@ function validaInfo() {
 	}
 }
 </script>
+ -->
